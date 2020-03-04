@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"extensions/v1beta1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx"},"labels":{"app":"spin"},"name":"ingress","namespace":"spinnaker"},"spec":{"rules":[{"host":"spinnaker.se.armory.io","http":{"paths":[{"backend":{"serviceName":"spin-deck","servicePort":9000},"path":"/"}]}},{"host":"spinnaker-gate.se.armory.io","http":{"paths":[{"backend":{"serviceName":"spin-gate","servicePort":8084},"path":"/"}]}}]}}
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  creationTimestamp: "2020-02-02T15:04:39Z"
+  generation: 1
+  labels:
+    app: spin
+  name: ingress
+  namespace: telemachus-system
+  resourceVersion: "149994734"
+  selfLink: /apis/extensions/v1beta1/namespaces/telemachus-system/ingresses/ingress
+  uid: 69a06373-83b5-11e9-84f7-02336a133dbc
+spec:
+  rules:
+  - host: telemachus.se.armory.io
+    http:
+      paths:
+      - backend:
+          serviceName: spin-deck
+          servicePort: 9000
+        path: /
+  - host: telemachus-gate.se.armory.io
+    http:
+      paths:
+      - backend:
+          serviceName: spin-gate
+          servicePort: 8084
+        path: /
+status:
+  loadBalancer:
+    ingress:
+    - hostname: abe11c1fe5a6211eab53706f3d4e40e5-469969934.us-west-2.elb.amazonaws.com
